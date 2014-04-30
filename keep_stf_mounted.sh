@@ -12,5 +12,3 @@ then
 	open -n /code/auto-bots/mount_stf.app --args -AppCommandLineArg
 
 fi
-
-env > ~/env_dump.txt
