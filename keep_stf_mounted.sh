@@ -5,13 +5,19 @@
 # why do we add this to the path?
 # see this:
 # http://stackoverflow.com/questions/2388087/how-to-get-cron-to-call-in-the-correct-paths
-export PATH=$PATH:/usr/sbin/
+export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/go/bin:/usr/local/MacGPG2/bin:/usr/texbin:/usr/local/go/bin
 
-if [ $(airport -I | grep "secret_internet" | wc -l) -gt 0 ] && [ $(ls /Volumes/ | grep "Red October" | wc -l) -lt 1 ]
+wifiname=$(airport -I | grep "secret_internet" | wc -l)
+STFmounted=$(ls /Volumes/ | grep "Red October" | wc -l)
+# AttemptMount=0
+
+if [ $wifiname -gt 0 ] && [ $STFmounted -lt 1 ]
 then
-	open -n /code/auto-bots/mount_stf.app --args -AppCommandLineArg
-
+	# AttemptMount=5
+	osascript /code/auto-bots/mount_stf.scpt
+	# AttemptMount=9
 fi
 
-# keep a log of when you last ran
-date > /code/auto-bots/keep_stf_mounted.log
+# # keep a log of when you last ran and other things
+# date >> /code/auto-bots/keep_stf_mounted.txt
+# echo  $wifiname $STFmounted $AttemptMount >> /code/auto-bots/keep_stf_mounted.txt
