@@ -9,3 +9,6 @@ if [ $(ps aux | grep "Typinator" | wc -l) -eq 1 ]
 then
 	open -a "Typinator"
 fi
+
+# keep a log of when you last ran
+date > /code/auto-bots/keep_process_running.log

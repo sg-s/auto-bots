@@ -12,3 +12,6 @@ then
 	open -n /code/auto-bots/mount_stf.app --args -AppCommandLineArg
 
 fi
+
+# keep a log of when you last ran
+date > /code/auto-bots/keep_stf_mounted.log
