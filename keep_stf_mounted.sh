@@ -5,7 +5,7 @@
 # why do we add this to the path?
 # see this:
 # http://stackoverflow.com/questions/2388087/how-to-get-cron-to-call-in-the-correct-paths
-export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/go/bin:/usr/local/MacGPG2/bin:/usr/texbin:/usr/local/go/bin
+export PATH=/usr/local/bin:/bin:/usr/sbin
 
 wifiname=$(airport -I | grep "secret_internet" | wc -l)
 STFmounted=$(ls /Volumes/ | grep "Red October" | wc -l)
