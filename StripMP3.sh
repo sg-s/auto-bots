@@ -23,11 +23,7 @@
 # and to give it the extension .video, use:
 # ./convert.sh mp4 DIV3 avi video
 
-# remove spaces from all names
-for a in *$1; do 
-  echo Converting "$a" to "${a// /_}"
-  mv "$a" "${a// /_}"
-done
+
 
 
 # where is VLC?
@@ -36,11 +32,13 @@ vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 for a in *$1; do 
 	# $vlc -I dummy -vvv "$a" --sout "#transcode{hq,deinterlace,vcodec=$2,width=$w,height=$h,vb=$bitrate,channels=6}:standard{mux_video=$3,dst=\"$a.$4\",access=file}" vlc://quit 
 
-	/Applications/VLC.app/Contents/MacOS/VLC -I dummy "$a" --sout "#transcode{acodec=mp3,vcodec=dummy}:standard{access=file,mux=raw,dst=\"$a.mp3\"}" 
+	echo $a
+
+	$vlc -I dummy "$a" --sout "#transcode{acodec=mp3,vcodec=dummy}:standard{access=file,mux=raw,dst=\"$a.mp3\"}" vlc://quit
 
 	
 done
-vlc://quit
+
 
 
 
