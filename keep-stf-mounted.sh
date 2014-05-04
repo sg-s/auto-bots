@@ -14,7 +14,7 @@ STFmounted=$(ls /Volumes/ | grep "Red October" | wc -l)
 if [ $wifiname -gt 0 ] && [ $STFmounted -lt 1 ]
 then
 	# AttemptMount=5
-	osascript /code/auto-bots/mount_stf.scpt
+	osascript /code/auto-bots/mount-stf.scpt
 	# AttemptMount=9
 fi
 

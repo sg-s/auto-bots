@@ -11,4 +11,4 @@ then
 fi
 
 # keep a log of when you last ran
-date > /code/auto-bots/keep_process_running.log
+date > /code/auto-bots/keep-process-running.log
