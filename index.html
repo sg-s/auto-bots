@@ -42,8 +42,17 @@
 <h2>
 <a name="copy-fonts" class="anchor" href="#copy-fonts"><span class="octicon octicon-link"></span></a>copy-fonts</h2>
 
+<p>Moving computers? Take your fonts with you. Copies fonts from commonly used folders on Mac OS X into a folder called "fonts" in your home folder so you can move it easily.</p>
+
 <h2>
 <a name="keep-process-running" class="anchor" href="#keep-process-running"><span class="octicon octicon-link"></span></a>keep-process-running</h2>
+
+<p>keep-process-running is meant to be run continuously, e.g., using crontab. </p>
+
+<p>edit the file (e.g., on line 3) with the process you want to keep running: </p>
+
+<div class="highlight highlight-bash"><pre><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>ps aux <span class="p">|</span> grep <span class="s2">"Quicksilver"</span> <span class="p">|</span> wc -l<span class="k">)</span> -eq 1 <span class="o">]</span>
+</pre></div>
 
 <h2>
 <a name="netupm" class="anchor" href="#netupm"><span class="octicon octicon-link"></span></a>netup.m</h2>
