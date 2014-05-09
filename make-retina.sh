@@ -28,7 +28,10 @@ for a in *$1; do
 		echo "Increasing to meet minimum width..."
 		sips --resampleHeight $MinHeight $a
 	fi
-	echo "DONE"
-
+	
+	# move this file to ~/Pictures/wallpapers/retina/
+	mv $a ~/Pictures/wallpapers/retina/$a
 
 done
+
+echo "DONE"
