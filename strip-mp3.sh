@@ -34,7 +34,7 @@ for a in *$1; do
 
 	echo $a
 
-	$vlc -I dummy "$a" --sout "#transcode{acodec=mp3,vcodec=dummy}:standard{access=file,mux=raw,dst=\"$a.mp3\"}" vlc://quit
+	$vlc -I dummy "$a" --sout "#transcode{acodec=mp3,vcodec=dummy,ab=400}:standard{access=file,mux=raw,dst=\"$a.mp3\"}" vlc://quit
 
 	
 done

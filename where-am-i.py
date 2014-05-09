@@ -12,7 +12,7 @@
 # 3. Modify line 43 in this file to reflect the path where ip.txt is
 #
 # 4. Modify your crontab (I suggest using Cronnix on a Mac) to run this command
-#    /path/to/this/script/whereami.py every minute (on Cronnix, make every field a asterix)
+#    /path/to/this/script/where-am-i.py every minute (on Cronnix, make every field a asterix)
 #
 # 5. verify that the crontab changes have stuck:
 #    crontab -l
@@ -25,6 +25,7 @@ import subprocess
 import socket
 import os
 
+
 # get external IP
 p = subprocess.Popen('dig +short myip.opendns.com @resolver1.opendns.com', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 for line in p.stdout.readlines():
@@ -34,7 +35,6 @@ ip = ip[0:-1];
 
 
 # get internal IP
-# p2 = subprocess.Popen('/sbin/ipconfig getifaddr en0', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 p2 = subprocess.Popen('/sbin/ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 for line in p2.stdout.readlines():
