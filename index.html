@@ -51,7 +51,8 @@ chmod a+x link-scripts.sh
 <a name="contents" class="anchor" href="#contents"><span class="octicon octicon-link"></span></a>Contents</h1>
 
 <h2>
-<a name="link-scripts" class="anchor" href="#link-scripts"><span class="octicon octicon-link"></span></a>link-scripts</h2>
+<a name="link-scripts-script" class="anchor" href="#link-scripts-script"><span class="octicon octicon-link"></span></a>link-scripts <code>[script]</code>
+</h2>
 
 <p>What's the use of having a bunch of scripts if you need to remember where they are and have to manually set permissions for them to get them working? link-scripts automatically makes all the scripts in the current folder executable, and links them using short names (it strips out the extension) to a folder in /usr/bin/.</p>
 
@@ -85,9 +86,20 @@ chmod a+x link-scripts.sh
 <a name="keep-stf-mounted-bot" class="anchor" href="#keep-stf-mounted-bot"><span class="octicon octicon-link"></span></a>keep-stf-mounted <code>[bot]</code>
 </h2>
 
+<p>Keeps a network volume mounted on OS X. It checks if you're on the correct WiFi network (change as needed) and checks if the network drive is mounted (again, change as needed), and calls a small AppleScript to mount the network drive (again, modify as needed). The advantage of doing this crazy scheme is you use Mac OS X's core volume management, and have full access to the keychain, so no passwords are stored in plain text. </p>
+
+<p>This is basically a free replacement to ridiculous tools like <a href="https://itunes.apple.com/us/app/drive-mounter/id441149468?mt=12">Drive Mounter (App Store link)</a></p>
+
 <h2>
 <a name="strip-mp3-script" class="anchor" href="#strip-mp3-script"><span class="octicon octicon-link"></span></a>strip-mp3 <code>[script]</code>
 </h2>
+
+<p>Strips MP3s from specified video files in the current folder and extracts the audio to a .mp3. Particualrltly useful when combined with <a href="https://github.com/rg3/youtube-dl">this handy script</a> to download youtube videos </p>
+
+<div class="highlight highlight-bash"><pre>strip-mp3 .mp4 
+</pre></div>
+
+<p>will grab all the .mp4 files in the current directory, and use VLC to extract audio form them and save them in mp3 files. </p>
 
 <h2>
 <a name="where-am-ipy-bot" class="anchor" href="#where-am-ipy-bot"><span class="octicon octicon-link"></span></a>where-am-i.py <code>[bot]</code>
