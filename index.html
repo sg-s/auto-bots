@@ -41,11 +41,24 @@
 <p>If you have git installed:</p>
 
 <pre><code>git clone https://github.com/sg-s/auto-bots.git
+cd auto-bots
+chmod a+x link-scripts.sh
+./link-scripts.sh
 
 </code></pre>
 
 <h1>
 <a name="contents" class="anchor" href="#contents"><span class="octicon octicon-link"></span></a>Contents</h1>
+
+<h2>
+<a name="link-scripts" class="anchor" href="#link-scripts"><span class="octicon octicon-link"></span></a>link-scripts</h2>
+
+<p>What's the use of having a bunch of scripts if you need to remember where they are and have to manually set permissions for them to get them working? link-scripts automatically makes all the scripts in the current folder executable, and links them using short names (it strips out the extension) to a folder in /usr/bin/.</p>
+
+<p>So once you run the install script above, you can run any of the scripts from anywhere in your computer using (for example)</p>
+
+<div class="highlight highlight-bash"><pre>make-retina
+</pre></div>
 
 <h2>
 <a name="copy-fonts-script" class="anchor" href="#copy-fonts-script"><span class="octicon octicon-link"></span></a>copy-fonts <code>[script]</code>
@@ -69,7 +82,7 @@
 </h2>
 
 <h2>
-<a name="keep-std-mounted-bot" class="anchor" href="#keep-std-mounted-bot"><span class="octicon octicon-link"></span></a>keep-std-mounted <code>[bot]</code>
+<a name="keep-stf-mounted-bot" class="anchor" href="#keep-stf-mounted-bot"><span class="octicon octicon-link"></span></a>keep-stf-mounted <code>[bot]</code>
 </h2>
 
 <h2>
