@@ -8,6 +8,8 @@
 # % To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
+strip-spaces $1
+
 MinWidth=2880
 MinHeight=1800
 
