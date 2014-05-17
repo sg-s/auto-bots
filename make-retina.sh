@@ -8,32 +8,47 @@
 # % To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-strip-spaces $1
-
+# specify minimum size
 MinWidth=2880
 MinHeight=1800
 
-for a in *$1; do 
-	echo $a
-	# figure out if the width needs to be enlarged
-	w=$(sips -g pixelWidth $a | grep pixelWidth | cut -c15-)	
-	if [ $w -lt $MinWidth ]
-	then
-		echo "Increasing to meet minimum width..."
-		sips --resampleWidth $MinWidth $a
-	fi
+# specify image formats
+formats[1]="jpg"
+formats[2]="jpeg"
+formats[3]="tiff"
+formats[4]="png"
 
-	# figure out if the height needs to be enlarged
-	h=$(sips -g pixelHeight $a | grep pixelHeight | cut -c15-) 
-	if [ $h -lt 1880 ]
-	then
-		echo "Increasing to meet minimum width..."
-		sips --resampleHeight $MinHeight $a
-	fi
-	
-	# move this file to ~/Pictures/wallpapers/retina/
-	mv $a ~/Pictures/wallpapers/retina/$a
+# iterate over all conditions
+n=${#formats[@]}
 
+for (( c=1; c<=$n; c++ ))
+do 
+	this_format=${formats[$c]}
+	strip-spaces $this_format
+
+	for a in *$this_format; do 
+		echo $a
+		# figure out if the width needs to be enlarged
+		w=$(sips -g pixelWidth $a | grep pixelWidth | cut -c15-)	
+		if [ $w -lt $MinWidth ]
+		then
+			echo "Increasing to meet minimum width..."
+			sips --resampleWidth $MinWidth $a
+		fi
+
+		# figure out if the height needs to be enlarged
+		h=$(sips -g pixelHeight $a | grep pixelHeight | cut -c15-) 
+		if [ $h -lt 1880 ]
+		then
+			echo "Increasing to meet minimum width..."
+			sips --resampleHeight $MinHeight $a
+		fi
+		
+		# move this file to ~/Pictures/wallpapers/retina/
+		mv $a ~/Pictures/wallpapers/retina/$a
+
+	done
 done
+
 
 echo "DONE"
