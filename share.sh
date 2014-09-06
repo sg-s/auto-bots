@@ -31,4 +31,6 @@ scp $zip_name $login_id:/Library/WebServer/Documents/
 echo $login_id/$zip_name | pbcopy
 echo "Link copied to clipboard"
 
+# delete the .zip file we made
+rm $zip_name
 
