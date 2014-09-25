@@ -1,3 +1,21 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Auto-bots](#auto-bots)
+- [installation](#installation)
+  - [git-stat ```[script]```](#git-stat-script)
+  - [keep-drive-mounted ```[bot]```](#keep-drive-mounted-bot)
+  - [keep-process-running ```[bot]```](#keep-process-running-bot)
+  - [make-retina.sh `[script]`](#make-retinash-script)
+  - [share.sh `[script]`](#sharesh-script)
+  - [where-am-i.py ```[bot]```](#where-am-ipy-bot)
+  - [link-scripts `[script]`](#link-scripts-script)
+  - [netup.m ```[bot]```](#netupm-bot)
+  - [strip-mp3 ```[script]```](#strip-mp3-script)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Auto-bots
 
 A mishmash of various scripts and bots that make life easier. Most of these scripts are `bash` scripts, but some are written in `python` or `MATLAB`
@@ -18,10 +36,7 @@ chmod a+x link-scripts.sh
 
 `link-scripts` makes all the scripts here executable, and you can run them by calling their name.
 
-# Contents
-
-* copy-fonts.sh* git-stat.sh* keep-drive-mounted.sh* keep-process-running.sh* link-scripts.sh* make-retina.sh* netup.m* share.sh* strip-mp3.sh* strip-spaces.sh* where-am-i.py
-## copy-fonts ```[script]```
+# Contents## copy-fonts ```[script]```
 
 Moving computers? Take your fonts with you. Copies fonts from commonly used folders on Mac OS X into a folder called "fonts" in your home folder so you can move it easily.
 
