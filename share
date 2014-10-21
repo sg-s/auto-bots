@@ -1,5 +1,5 @@
 #!/bin/bash
-# share.sh
+# share
 # compresses chosen folder, uploads to server, and returns a publicly sharable link
 # % 
 # % created by Srinivas Gorur-Shandilya at 10:20 , 09 April 2014. Contact me at http://srinivas.gs/contact/
