@@ -1,0 +1,17 @@
+#!/bin/bash
+# % random-string
+# makes a random string
+# % 
+# % created by Srinivas Gorur-Shandilya at 10:20 , 09 April 2014. Contact me at http://srinivas.gs/contact/
+# % 
+# % This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. 
+# % To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+
+index=0
+str=""
+for i in {a..z}; do arr[index]=$i; index=`expr ${index} + 1`; done
+for i in {A..Z}; do arr[index]=$i; index=`expr ${index} + 1`; done
+for i in {0..9}; do arr[index]=$i; index=`expr ${index} + 1`; done
+for i in {0..9}; do str="$str${arr[$RANDOM%$index]}"; done
+
+echo $str

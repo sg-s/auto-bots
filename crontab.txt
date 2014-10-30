@@ -1,3 +1,0 @@
-*	*	*	*	*	/code/auto-bots/where-am-i.py
-*	*	*	*	*	/code/auto-bots/keep-process-running.sh
-*	*	*	*	*	/code/auto-bots/keep-drive-mounted.sh

@@ -34,3 +34,16 @@ echo "Link copied to clipboard"
 # delete the .zip file we made
 rm $zip_name
 
+
+# keeping a log
+
+# first, we copy the log file from the server
+scp $login_id:/Library/WebServer/Documents/share.log ~/
+
+# append new log
+d=$(date)
+echo $d $zip_name >> ~/share.log
+
+# copy it back
+scp ~/share.log $login_id:/Library/WebServer/Documents/
+rm ~/share.log

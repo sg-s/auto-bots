@@ -21,11 +21,13 @@ zip_name=$str".zip"
 echo "Compressing into" $zip_name
 zip -r -X -q $zip_name $1 # -X flag removes junk that Mac OS X adds
 
+echo "Making a new folder for this"
 # make a new folder
 folder_name=$(echo $zip_name | cut -d '.' -f1)
 mkdir $folder_name
 cp $zip_name $folder_name/
 
+echo "Generating password..."
 # make a password
 str=""
 for i in {a..z}; do arr[index]=$i; index=`expr ${index} + 1`; done
@@ -36,6 +38,7 @@ for i in {1..6}; do str="$str${arr[$RANDOM%$index]}"; done
 # secure the folder -- make the htpasswd file
 htpasswd -bc $folder_name/.htpasswd user $str
 
+echo "Making the .htaccess file..."
 # make the htaccess file
 source=$(echo "AuthUserFile /Library/WebServer/Documents/"$folder_name"/.htpasswd")
 echo $source >> $folder_name/.htaccess
@@ -43,7 +46,7 @@ echo "AuthType Basic" >> $folder_name/.htaccess
 echo "AuthName "user"" >> $folder_name/.htaccess
 echo "Require valid-user" >> $folder_name/.htaccess
 
-
+echo "Moving to server..."
 # get the login name from some file (assumes you have public-key SSH set up)
 login_id=$(<~/.server_id)
 
@@ -55,4 +58,19 @@ echo -e $login_id/$folder_name "\nUser name: user\nPassword:" $str | pbcopy
 
 # delete the .zip file we made
 rm $zip_name
+rm -rf $folder_name
+
+
+# keeping a log
+
+# first, we copy the log file from the server
+scp $login_id:/Library/WebServer/Documents/secure-share.log ~/
+
+# append new log
+d=$(date)
+echo $d $folder_name >> ~/share.log
+
+# copy it back
+scp ~/secure-share.log $login_id:/Library/WebServer/Documents/
+rm ~/secure-share.log
 
