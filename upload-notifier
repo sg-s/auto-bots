@@ -1,0 +1,14 @@
+#!/bin/bash
+# this script checks a certain folder, and if there is a file in it that was created in the last 5 minutes, sends # a notification using terminal-notifier (brew install terminal-notifier)
+# this is meant to work with my upload PHP script (https://github.com/sg-s/upload)
+# 
+# created by Srinivas Gorur-Shandilya at 9:59 , 09 December 2014. Contact me at http://srinivas.gs/contact/
+# 
+# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International#License. 
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+
+s=$(find ~/sync/uploads/*.*  -type f -mmin -5 | wc -l)
+if [ $s -gt 0 ]
+then
+	 echo 'Someone has sent you a file' | terminal-notifier -sound default -title "File Uploaded to srinivas.gs" -execute open ~/sync/uploads/
+fi
