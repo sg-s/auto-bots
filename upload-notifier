@@ -1,5 +1,7 @@
 #!/bin/bash
-# this script checks a certain folder, and if there is a file in it that was created in the last 5 minutes, sends # a notification using terminal-notifier (brew install terminal-notifier)
+# this script checks a certain folder for new files, and if it finds any, sends a OS X notification 
+# it keeps bugging the user with notifications till the user clicks on the notification, or removes the file 
+# this magic is powered by writing a special tag to "seen" files, and treating all files without the special tag as unseen (powered by tagfile.py and xattr)
 # this is meant to work with my upload PHP script (https://github.com/sg-s/upload)
 # 
 # created by Srinivas Gorur-Shandilya at 9:59 , 09 December 2014. Contact me at http://srinivas.gs/contact/
@@ -7,8 +9,20 @@
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International#License. 
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
-s=$(find ~/sync/uploads/*.*  -type f -mmin -5 | wc -l)
-if [ $s -gt 0 ]
+
+# this uses the old time based notification system
+# s=$(find ~/sync/uploads/*.*  -type f -mmin -5 | wc -l)
+# if [ $s -gt 0 ]
+# then
+# 	 echo 'Someone has sent you a file' | terminal-notifier -sound default -title "File Uploaded to srinivas.gs" -execute open ~/sync/uploads/
+# fi
+if [ $(ls ~/sync/uploads/ | wc -l) -gt 0 ]
 then
-	 echo 'Someone has sent you a file' | terminal-notifier -sound default -title "File Uploaded to srinivas.gs" -execute open ~/sync/uploads/
+	for f in ~/sync/uploads/*.*
+	do 
+		if [ $(xattr -l  $f | grep jOqHdUxy8O | wc -l) -lt 2 ]
+		then
+			echo $f | terminal-notifier -sound default -title "File Uploaded to srinivas.gs" -execute "/code/auto-bots/tagfile.py jOqHdUxy8O $f"
+		fi
+	done
 fi
