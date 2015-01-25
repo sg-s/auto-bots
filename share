@@ -25,10 +25,9 @@ zip -r -X -q $zip_name $1 # -X flag removes junk that Mac OS X adds
 login_id=$(<~/.server_id)
 
 # copy to server
-scp $zip_name $login_id:/Library/WebServer/Documents/
-
+scp $zip_name $login_id:/Library/WebServer/Documents/share/
 # copy public link to clipboard 
-echo $login_id/$zip_name | pbcopy
+echo $login_id/share/$zip_name | pbcopy
 echo "Link copied to clipboard"
 
 # delete the .zip file we made
@@ -38,12 +37,12 @@ rm $zip_name
 # keeping a log
 
 # first, we copy the log file from the server
-scp $login_id:/Library/WebServer/Documents/share.log ~/
+scp $login_id:/Library/WebServer/Documents/share/share.log ~/
 
 # append new log
 d=$(date)
 echo $d $zip_name >> ~/share.log
 
 # copy it back
-scp ~/share.log $login_id:/Library/WebServer/Documents/
+scp ~/share.log $login_id:/Library/WebServer/Documents/share/
 rm ~/share.log
