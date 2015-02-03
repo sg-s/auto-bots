@@ -23,7 +23,7 @@
 # and to give it the extension .video, use:
 # ./convert.sh mp4 DIV3 avi video
 
-
+# this script is depreceated. use youtube-dl -x instead.
 
 
 # where is VLC?
