@@ -19,7 +19,7 @@ then
 	do 
 		kill_me=$(ps aux | awk {'sum=$2;print sum'} | head -n $c | tail -n 1)
 		echo $kill_me
-		kill $kill_me
+		kill -9 $kill_me
 	done
 
 
