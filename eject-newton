@@ -1,0 +1,6 @@
+#!/bin/bash
+# eject all network disks if not at work
+if [ $(airport -I | grep "YaleSecure" | wc -l)  -lt 1 ]
+then
+	osascript -e 'tell application "Finder" to eject (every disk whose ejectable is true)'
+fi
