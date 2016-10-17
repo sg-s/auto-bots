@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# convert2mp3
+# converts all files to mp3 files
+# usage:
+# cd /folder/with/music/in/weird/formats
+# convert2mp3 .opus
+# convert2mp3 .wma
+# etc.
+
+for file in *$1; do 
+	echo $file 
+    out=${file%.wma}.mp3
+    ffmpeg -i "$file" -ab 256k "$out" # && rm "$file"
+done
