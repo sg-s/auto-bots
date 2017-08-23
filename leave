@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+
+# define parameters here
+code_root="/code/"
+your_url_pattern[1]="sg-s"
+your_url_pattern[2]="marderlab"
+
+# check if we need to push everything 
+push_all=$(echo $1 | grep "push-all" | wc -l)
+
+# show a list of folders that have dirty working directories
+printf "\n"
+echo "These folders have dirty working directories:"
+echo "---------------------------------------------"
+
+for dir in $code_root*/
+do
+    dir=${dir%*/}
+    
+    cd $code_root${dir##*/}
+    if [ -d .git ]; then
+
+    	# check if the remote URL has a string that might suggest that it's mine
+     	rem_url=$(git config --get remote.origin.url)
+     	goon=0
+
+     	# iterate over all keywords
+		n=${#your_url_pattern[@]}
+
+		for (( c=1; c<=$n; c++ ))
+		do 
+			this_pattern=${your_url_pattern[$c]}
+			M=$(echo $rem_url | grep $this_pattern | wc -l)
+			if [ $M -gt 0 ]; then
+				goon=1
+			fi;
+		done
+
+		if [ $goon -gt 0 ]; then
+			# it's a personal repo
+			mod=$(git status --porcelain | wc -l)
+			if [ $mod -gt 0 ]; then
+				# printf "\n\n"
+				echo $code_root${dir##*/}
+			fi;	
+		fi; 
+	fi;
+done
+
+# show a list of folders that have commits that need to be pushed
+printf "\n\n"
+if [ $push_all -gt 0 ]; then
+	echo "These repos will be pushed to remote:"
+else
+	echo "You should push these to remote:"
+fi;
+
+echo "--------------------------------"
+
+for dir in $code_root*/
+do
+    dir=${dir%*/}
+    
+    cd $code_root${dir##*/}
+    if [ -d .git ]; then
+
+    	# check if the remote URL has a string that might suggest that it's mine
+     	rem_url=$(git config --get remote.origin.url)
+     	goon=0
+
+     	# iterate over all keywords
+		n=${#your_url_pattern[@]}
+
+		for (( c=1; c<=$n; c++ ))
+		do 
+			this_pattern=${your_url_pattern[$c]}
+			M=$(echo $rem_url | grep $this_pattern | wc -l)
+			if [ $M -gt 0 ]; then
+				goon=1
+			fi;
+		done
+
+		if [ $goon -gt 0 ]; then
+			# it's a personal repo
+			mod=$(git log --oneline origin/master..HEAD | wc -l)
+			if [ $mod -gt 0 ]; then
+				echo $code_root${dir##*/}" → "$rem_url
+				if [ $push_all -gt 0 ]; then
+					git push
+				fi;
+			fi;	
+		fi; 
+	fi;
+done
