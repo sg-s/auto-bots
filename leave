@@ -53,6 +53,7 @@ if [ $push_all -gt 0 ]; then
 	echo "These repos will be pushed to remote:"
 else
 	echo "You should push these to remote:"
+	echo "(do so using 'leave --push-all')"
 fi;
 
 echo "--------------------------------"
@@ -84,6 +85,7 @@ do
 			# it's a personal repo
 			mod=$(git log --oneline origin/master..HEAD | wc -l)
 			if [ $mod -gt 0 ]; then
+
 				echo $code_root${dir##*/}" → "$rem_url
 				if [ $push_all -gt 0 ]; then
 					git push
