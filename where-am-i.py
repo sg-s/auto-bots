@@ -48,7 +48,7 @@ computerName = str(socket.gethostname());
 sh = computerName.find('.');
 computerName = computerName[0:sh];
 
-filename = '/Users/sigbhu/sync/odin-kalki-sync/';
+filename = '$HOME/sync/odin-kalki-sync/';
 filename = filename+computerName+'.txt';
 
 # create file if it doesn't exist
