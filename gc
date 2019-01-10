@@ -1,0 +1,13 @@
+#!/bin/bash
+# enables git hooks, if they exist,
+# and commits staged files
+
+if [ -e .git/hooks/pre-commit ]
+then
+    echo "Setting git pre-commit hook to executable..."
+    chmod a+x .git/hooks/pre-commit
+else
+    echo "No pre-commit hook exists."
+fi
+
+git commit -v
