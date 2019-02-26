@@ -1,0 +1,46 @@
+from glob import glob
+import os
+from subprocess import Popen, PIPE, STDOUT
+
+
+# define parameters here
+code_root="/code/"
+url_patterns = ["sg-s","marderlab"]
+
+alldirs = glob("/code/*/")
+
+dity_dirs = []
+
+for i in range(1,len(alldirs)):
+	
+
+	# check if this is a git repository 
+	if os.path.isdir(alldirs[i]+'.git'):
+		
+
+		os.chdir(alldirs[i])
+
+
+		cmd = 'git remote -v'
+		p = Popen(cmd, shell=True, stdout=PIPE, close_fds=True)
+		output = p.stdout.read().decode()
+
+		for url_pat in url_patterns:
+			if output.find(url_pat) > 1:
+
+
+				# check if git repo is clean
+				cmd = "git status --porcelain"
+				p = Popen(cmd, shell=True, stdout=PIPE, close_fds=True)
+				output = p.stdout.read().decode()
+
+				if output.count('\n') > 0:
+
+					dity_dirs.append(alldirs[i])
+
+if len(dity_dirs) == 0:
+	print("All directories are clean!")
+else:
+	print("The following fodlers are dirty:")
+	for d in dity_dirs:
+		print(d)
