@@ -1,100 +1,47 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python
+from glob import glob
+import os
+from subprocess import Popen, PIPE, STDOUT
+
 
 # define parameters here
 code_root="/code/"
-your_url_pattern[1]="sg-s"
-your_url_pattern[2]="marderlab"
+url_patterns = ["sg-s","marderlab"]
 
-# check if we need to push everything 
-push_all=$(echo $1 | grep "push-all" | wc -l)
+alldirs = glob("/code/*/")
 
-# show a list of folders that have dirty working directories
-printf "\n"
-echo "These folders have dirty working directories:"
-echo "---------------------------------------------"
+dity_dirs = []
 
-for dir in $code_root*/
-do
-    dir=${dir%*/}
-    
-    cd $code_root${dir##*/}
-    if [ -d .git ]; then
+for i in range(1,len(alldirs)):
+	
 
-    	# check if the remote URL has a string that might suggest that it's mine
-     	rem_url=$(git config --get remote.origin.url)
-     	goon=0
+	# check if this is a git repository 
+	if os.path.isdir(alldirs[i]+'.git'):
+		
 
-     	# iterate over all keywords
-		n=${#your_url_pattern[@]}
+		os.chdir(alldirs[i])
 
-		for (( c=1; c<=$n; c++ ))
-		do 
-			this_pattern=${your_url_pattern[$c]}
-			M=$(echo $rem_url | grep $this_pattern | wc -l)
-			if [ $M -gt 0 ]; then
-				goon=1
-			fi;
-		done
 
-		if [ $goon -gt 0 ]; then
-			# it's a personal repo
-			mod=$(git status --porcelain | wc -l)
-			if [ $mod -gt 0 ]; then
-				# printf "\n\n"
-				echo $code_root${dir##*/}
-			fi;	
-		fi; 
-	fi;
-done
+		cmd = 'git remote -v'
+		p = Popen(cmd, shell=True, stdout=PIPE, close_fds=True)
+		output = p.stdout.read().decode()
 
-# show a list of folders that have commits that need to be pushed
-printf "\n\n"
-if [ $push_all -gt 0 ]; then
-	echo "These repos will be pushed to remote:"
-else
-	echo "You should push these to remote:"
-	echo "(do so using 'leave --push-all')"
-fi;
+		for url_pat in url_patterns:
+			if output.find(url_pat) > 1:
 
-echo "--------------------------------"
 
-for dir in $code_root*/
-do
-    dir=${dir%*/}
-    
-    cd $code_root${dir##*/}
-    if [ -d .git ]; then
+				# check if git repo is clean
+				cmd = "git status --porcelain"
+				p = Popen(cmd, shell=True, stdout=PIPE, close_fds=True)
+				output = p.stdout.read().decode()
 
-    	# check if the remote URL has a string that might suggest that it's mine
-     	rem_url=$(git config --get remote.origin.url)
-     	goon=0
+				if output.count('\n') > 0:
 
-     	# iterate over all keywords
-		n=${#your_url_pattern[@]}
+					dity_dirs.append(alldirs[i])
 
-		for (( c=1; c<=$n; c++ ))
-		do 
-			this_pattern=${your_url_pattern[$c]}
-			M=$(echo $rem_url | grep $this_pattern | wc -l)
-			if [ $M -gt 0 ]; then
-				goon=1
-			fi;
-		done
-
-		if [ $goon -gt 0 ]; then
-			# it's a personal repo
-			mod=$(git log --oneline origin/master..HEAD | wc -l)
-			if [ $mod -gt 0 ]; then
-
-				echo $code_root${dir##*/}" → "$rem_url
-				if [ $push_all -gt 0 ]; then
-					git push
-				fi;
-			fi;	
-		fi; 
-	fi;
-done
-
-# RED='\033[0;31m'
-# NC='\033[0m' # No Color
-# printf "I ${RED}love${NC} Stack Overflow\n"
+if len(dity_dirs) == 0:
+	print("All directories are clean!")
+else:
+	print("The following fodlers are dirty:")
+	for d in dity_dirs:
+		print(d)
