@@ -1,0 +1,36 @@
+# check a list of servers, and if their CPU use is below
+# a certain value, trigger a notification
+
+file="servers.txt"
+
+
+
+
+
+while IFS=: read -r f1 f2 
+do
+
+	cpu_usage=$(ssh $f1 top -b -n 10 -d.2 | grep 'Cpu' |  awk 'NR==3{ print($2)}')
+
+    if (( $(echo "$f2 > $cpu_usage" |bc -l) ));
+    then
+
+    	a="$f1" 
+    	b=" is being underused!"
+    	title="$a$b"
+
+    	a="Current CPU usage is "
+    	b="$cpu_usage"
+    	text="$a$b"
+
+
+    	osascript -e "display notification \"$text\" with title \"$title\""
+    else
+    	echo $f1 "is running at " $cpu_usage
+    fi;
+
+
+
+    
+
+done <"$file"
