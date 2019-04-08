@@ -1,7 +1,7 @@
 # check a list of servers, and if their CPU use is below
 # a certain value, trigger a notification
 
-file="servers.txt"
+file="/code/auto-bots/servers.txt"
 
 
 
