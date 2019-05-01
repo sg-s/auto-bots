@@ -10,7 +10,7 @@ url_patterns = ["sg-s","marderlab"]
 
 alldirs = glob("/code/*/")
 
-dity_dirs = []
+dirty_dirs = []
 
 for i in range(1,len(alldirs)):
 	
@@ -37,11 +37,11 @@ for i in range(1,len(alldirs)):
 
 				if output.count('\n') > 0:
 
-					dity_dirs.append(alldirs[i])
+					dirty_dirs.append(alldirs[i])
 
-if len(dity_dirs) == 0:
+if len(dirty_dirs) == 0:
 	print("All directories are clean!")
 else:
-	print("The following fodlers are dirty:")
-	for d in dity_dirs:
+	print("The following folders are dirty:")
+	for d in dirty_dirs:
 		print(d)
