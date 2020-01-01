@@ -5,10 +5,10 @@ from subprocess import Popen, PIPE, STDOUT
 
 
 # define parameters here
-code_root="/code/"
+code_root="/Users/srinivas/code/"
 url_patterns = ["sg-s","marderlab"]
 
-alldirs = glob("/code/*/")
+alldirs = glob("/Users/srinivas/code/*/")
 
 dirty_dirs = []
 
