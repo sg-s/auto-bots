@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sips --resampleWidth 167 $1 --out icon167.png
+sips --resampleWidth 152 $1 --out icon152.png
+sips --resampleWidth 76 $1 --out icon76.png
+sips --resampleWidth 80 $1 --out icon80.png
+sips --resampleWidth 40 $1 --out icon40.png
+sips --resampleWidth 58 $1 --out icon58.png
+sips --resampleWidth 29 $1 --out icon29.png
+sips --resampleWidth 20 $1 --out icon20.png
+sips --resampleWidth 180 $1 --out icon180.png
+sips --resampleWidth 120 $1 --out icon120.png
+sips --resampleWidth 87 $1 --out icon87.png
+sips --resampleWidth 60 $1 --out icon60.png
