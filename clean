@@ -6,9 +6,18 @@ from subprocess import Popen, PIPE, STDOUT
 
 # define parameters here
 code_root="/Users/srinivas/code/"
-url_patterns = ["sg-s","marderlab"]
+url_patterns = ["sg-s","marderlab","inscopix"]
 
-alldirs = glob("/Users/srinivas/code/*/")
+alldirs = glob(code_root+"*/")
+
+print("Looking for code in: ")
+print(code_root)
+print("\n")
+
+print("Looking for code with remotes matching:")
+print(url_patterns)
+print("\n")
+
 
 dirty_dirs = []
 
