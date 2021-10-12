@@ -1,10 +1,9 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='NAME_OF_REPO',
     version='0.0.0',
-    #packages=['NAME_OF_REPO'], # if you have nested folders, uncomment this
-
+    packages=find_packages(exclude=('tests', 'docs')),
     description='DESC_OF_YOUR_REPO',
     url='URL',
     author='Srinivas Gorur-Shandilya',
