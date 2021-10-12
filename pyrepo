@@ -9,6 +9,22 @@
 # pyrepo <name>
 
 
+if [ -d .git ]; then
+  echo "In git repo, aborting"
+  exit 1
+else
+  echo "Not in git repo, proceeding..."
+fi;
+
+
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied. What do you want to name your new python project?"
+    exit 1
+fi
+
+
+
 mkdir $1 
 
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -36,3 +52,12 @@ cp $SCRIPT_DIR/assets/setup.py.template setup.py
 
 # call the update version git hook to fix the date
 python .git/hooks/update_version.py
+
+
+# make another folder inside this one with the same name
+# and make it a package
+mkdir $1
+touch $1/__init__.py
+
+# make a tests folder
+mkdir tests
