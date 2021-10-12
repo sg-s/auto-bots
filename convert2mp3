@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# converts (and deletes) all audio files in the current folder to mp3
-# use as follows:
-# ./convert2mp3 wma
-for file in *.$1; do 
-    out=$file$".mp3"
-    echo $file
-    ffmpeg -i "$file" -ab 256k "$out" && rm "$file"
-done

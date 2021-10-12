@@ -1,0 +1,38 @@
+#!/bin/bash
+# this shell script
+# sets up a new repo 
+# for python development with
+# some handy things already setup
+#
+# usage:
+# 
+# pyrepo <name>
+
+
+mkdir $1 
+
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+cp $SCRIPT_DIR/assets/python-gitignore.txt $1/.gitignore
+
+cd $1
+git init
+
+echo $1 >> README.md 
+
+
+# copy over pre-commit hooks
+cp $SCRIPT_DIR/assets/python-pre-commit-hook .git/hooks/pre-commit
+cp $SCRIPT_DIR/assets/python-update-version.py .git/hooks/update_version.py
+
+chmod a+x .git/hooks/pre-commit
+chmod a+x .git/hooks/update_version.py
+
+# make sure interrogate is installed 
+pip install interrogate
+
+# create a setup.py template 
+cp $SCRIPT_DIR/assets/setup.py.template setup.py 
+
+# call the update version git hook to fix the date
+python .git/hooks/update_version.py

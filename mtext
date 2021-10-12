@@ -1,5 +1,0 @@
-#!/bin/bash
-# converts input text into a banner figlet font
-figlet -w 200 -f  banner3 $1 > temp.mtext
-tr "#" ";" < temp.mtext | pbcopy
-rm temp.mtext

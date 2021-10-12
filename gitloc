@@ -1,4 +1,12 @@
 #!/usr/bin/env python
+#
+# show how many lines of code have changed in the last commits
+# and show other info 
+#
+# usage:
+# 
+# gitloc (in some git repo...)
+
 
 import re
 from email.utils import parsedate

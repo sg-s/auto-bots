@@ -1,5 +1,5 @@
 #!/bin/bash
-# small script to copy all installed fonts on a mac to an easily accesible folder in ~/fonts/
+# small script to copy all installed fonts on a mac to an easily accessible folder in ~/fonts/
 cd ~
 mkdir fonts
 cp ~/Library/fonts/*.otf ~/fonts/

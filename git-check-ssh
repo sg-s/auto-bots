@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # define parameters here
-code_root="/code/"
+code_root=$HOME"/code/"
 your_url_pattern[1]="sg-s"
-your_url_pattern[2]="marderlab"
+your_url_pattern[2]="inscopix"
 
 # check if we need to change to SSH automatically 
 change_all=$(echo $1 | grep "change-all" | wc -l)

@@ -1,0 +1,19 @@
+from setuptools import setup
+
+setup(
+    name='NAME_OF_REPO',
+    version='0.0.0',
+    #packages=['NAME_OF_REPO'], # if you have nested folders, uncomment this
+
+    description='DESC_OF_YOUR_REPO',
+    url='URL',
+    author='Srinivas Gorur-Shandilya',
+    author_email='code@srinivas.gs',
+    install_requires=[
+        'pandas>=1.3.2',
+        'seaborn>=0.11.2',
+        'matplotlib>=3.4.3',
+        'numpy>=1.20.3',
+        'scipy>=1.7.1',
+    ],
+)

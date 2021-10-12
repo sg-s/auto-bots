@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# this hook use interrogate to check doc strings
+
+python .git/hooks/update_version.py
+
+if [ $(interrogate -v . -f 100 | grep "FAILED" | wc -l) = 1 ]; then
+   echo "necessary docstrings missing:"
+   interrogate -vv . -f 100 
+   exit 1
+fi
