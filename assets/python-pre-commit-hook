@@ -9,3 +9,6 @@ if [ $(interrogate -v . -f 100 | grep "FAILED" | wc -l) = 1 ]; then
    interrogate -vv . -f 100 
    exit 1
 fi
+
+# add setup.py so that the updated version # is included 
+git add setup.py
