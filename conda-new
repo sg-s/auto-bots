@@ -2,11 +2,23 @@
 # makes a new conda environment 
 
 
+# if no 2nd argument is provided, default to 3.6
+PYVERSION=${2:-3.6}
+
+
+# conda, in its infinite wisdom, has decided that it won't
+# work when called from shell scripts, see:
+# https://github.com/conda/conda/issues/7980
+#
+# this inscrutable workaround works, but I have no idea why
+# 
+eval "$(conda shell.bash hook)"
+
 # deactivate whatever we're in now
 conda deactivate 
 
 # first, make a new env without user intervention 
-yes | conda create -n $1 python=3.6 pip
+yes | conda create -n $1 python=$PYVERSION pip
 
 # switch to that
 conda activate $1 
