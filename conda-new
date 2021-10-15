@@ -1,0 +1,16 @@
+
+# makes a new conda environment 
+
+
+# deactivate whatever we're in now
+conda deactivate 
+
+# first, make a new env without user intervention 
+yes | conda create -n $1 python=3.6 pip
+
+# switch to that
+conda activate $1 
+
+# allow this environment to show up in jupyter lab
+pip install ipykernel
+python -m ipykernel install --user --name $1
