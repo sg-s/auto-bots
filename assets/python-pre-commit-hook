@@ -12,3 +12,14 @@ fi
 
 # add setup.py so that the updated version # is included 
 git add setup.py
+
+
+
+# if the version # has changed, run some tests
+# this is so that tests run at most daily 
+VER=$(git diff -U0 HEAD^ HEAD setup.py | grep "+    version" | wc -l)
+
+if [ $VER -gt 0 ]; then
+   bash tests/run_tests.sh
+
+fi
