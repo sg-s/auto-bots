@@ -61,3 +61,11 @@ touch $1/__init__.py
 
 # make a tests folder
 mkdir tests
+
+
+# set up a github bot to check for docstrings
+# it's nice to also have server-side checks 
+# so that we prevent PRs with substandard code 
+mkdir .github
+mkdir .github/workflows
+cp  $SCRIPT_DIR/assets/main.yml .github/workflows/main.yml
