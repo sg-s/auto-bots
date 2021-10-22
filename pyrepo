@@ -63,9 +63,17 @@ touch $1/__init__.py
 mkdir tests
 
 
+
+# make a notebooks folder and copy over a default notebook
+# which has useful things filled out in the first cell
+# hat tip to Alec Hoyland
+mkdir notebooks
+cp $SCRIPTS/assets/template.ipynb notebooks/
+
 # set up a github bot to check for docstrings
 # it's nice to also have server-side checks 
 # so that we prevent PRs with substandard code 
 mkdir .github
 mkdir .github/workflows
 cp  $SCRIPT_DIR/assets/main.yml .github/workflows/main.yml
+
