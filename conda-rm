@@ -1,0 +1,9 @@
+
+eval "$(conda shell.bash hook)"
+
+conda deactivate
+
+conda env remove --name $1 
+
+# also remove it from the jupyter kernelspec
+yes | jupyter kernelspec uninstall $1

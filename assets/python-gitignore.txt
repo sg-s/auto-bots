@@ -1,10 +1,22 @@
-pdfs/
+# notebooks
 *.ipynb
 
+
+# matlab
+html/
+*.mat
+*.asv
+*.eps
+*.fig
+
+
+# general
 *DS_Store
 *.sublime-project
 *.sublime-workspace
-
+*.cache
+*.pdf
+pdfs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -13,6 +25,8 @@ __pycache__/
 
 # C extensions
 *.so
+*.dylib
+
 
 # Distribution / packaging
 .Python

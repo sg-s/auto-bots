@@ -1,0 +1,57 @@
+#!/bin/bash
+# this shell script
+# sets up a new repo 
+# for MATLAB development with
+# some handy things already setup
+#
+# usage:
+# 
+# matrepo <name>
+
+
+if [ -d .git ]; then
+  echo "In git repo, aborting"
+  exit 1
+else
+  echo "Not in git repo, proceeding..."
+fi;
+
+
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied. What do you want to name your new python project?"
+    exit 1
+fi
+
+
+
+mkdir $1 
+
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+cp $SCRIPT_DIR/assets/python-gitignore.txt $1/.gitignore
+
+cd $1
+git init
+
+echo "# "$1 >> README.md 
+
+
+# make a tests folder
+mkdir tests
+mkdir scripts
+mkdir src
+
+# make a new folder on Google Drive to hold the PDFs we generate
+mkdir "/Volumes/GoogleDrive/My Drive/analysis-reports/"$1
+ln -s "/Volumes/GoogleDrive/My Drive/analysis-reports/"$1 ./html
+
+# copy over assets for PDF generation 
+cp $SCRIPT_DIR/assets/logo.pdf ./html/
+cp $SCRIPT_DIR/assets/inscopix.cls ./html/
+cp $SCRIPT_DIR/assets/stylesheet.xsl ./scripts/
+
+
+# COPY the sublime project and open it
+cp $SCRIPT_DIR/assets/DEFAULT.sublime-project ./$1".sublime-project"
+subl ./$1".sublime-project"
