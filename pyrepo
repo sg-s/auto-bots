@@ -68,7 +68,7 @@ mkdir tests
 # which has useful things filled out in the first cell
 # hat tip to Alec Hoyland
 mkdir notebooks
-cp $SCRIPTS/assets/template.ipynb notebooks/
+cp $SCRIPT_DIR/assets/template.ipynb notebooks/
 
 # set up a github bot to check for docstrings
 # it's nice to also have server-side checks 
