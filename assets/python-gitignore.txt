@@ -1,6 +1,6 @@
 # notebooks
 *.ipynb
-
+*.html
 
 # matlab
 html/

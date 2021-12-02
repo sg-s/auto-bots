@@ -4,7 +4,7 @@
 
 python .git/hooks/update_version.py
 
-if [ $(interrogate -v . -f 100 | grep "FAILED" | wc -l) = 1 ]; then
+if [ $(interrogate -v . -e notebooks -f 100 | grep "FAILED" | wc -l) = 1 ]; then
    echo "necessary docstrings missing:"
    interrogate -vv . -f 100 
    exit 1
@@ -23,3 +23,13 @@ if [ $VER -gt 0 ]; then
    bash tests/run_tests.sh
 
 fi
+
+
+
+# convert all python notebooks to scripts and add them to the commit 
+
+for i in notebooks/*.ipynb; do
+   [ -f "$i" ] || break
+   jupyter nbconvert --to script  $i
+    
+done

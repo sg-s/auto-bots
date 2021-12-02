@@ -19,7 +19,7 @@ fi;
 
 if [ $# -eq 0 ]
   then
-    echo "No arguments supplied. What do you want to name your new python project?"
+    echo "No arguments supplied. What do you want to name your new MATLAB project?"
     exit 1
 fi
 

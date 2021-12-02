@@ -24,4 +24,5 @@ jobs:
       uses: JackMcKew/python-interrogate-check@main
       with:
         path: '.'
+        exclude: 'notebooks'
         fail-under: 100
