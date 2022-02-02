@@ -33,7 +33,7 @@ cp $SCRIPT_DIR/assets/python-gitignore.txt $1/.gitignore
 cd $1
 git init
 
-echo $1 >> README.md 
+echo \#$1 >> README.md 
 
 
 # copy over pre-commit hooks
